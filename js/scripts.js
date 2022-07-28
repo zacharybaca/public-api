@@ -89,6 +89,7 @@ let modalAddress = document.createElement('p');
 let modalBirthday = document.createElement('p');
 let modalButton = document.createElement('button');
 let strongText = document.createElement('STRONG');
+let divider = document.createElement('hr');
 
 //Add Class Attributes To Elements
 strongText.textContent = 'X';
@@ -112,3 +113,15 @@ modalAddress.classList.add('modal-text');
 modalBirthday.classList.add('modal-text');
 
 //Append Elements To Respective Parent Elements
+modalContainer.appendChild(modal);
+modalButton.appendChild(strongText);
+modal.appendChild(modalButton);
+modal.appendChild(modalInfo);
+modalInfo.appendChild(modalImage);
+modalInfo.appendChild(modalName);
+modalInfo.appendChild(modalEmail);
+modalInfo.appendChild(modalCity);
+modalInfo.appendChild(divider);
+modalInfo.appendChild(modalPhoneNumber);
+modalInfo.appendChild(modalAddress);
+modalInfo.appendChild(modalBirthday);
