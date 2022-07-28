@@ -1,3 +1,4 @@
+// SEARCH CONTAINER
 //Create Form Element For Search Container
 //Create Elements Needed For Form
 let search = document.querySelector('.search-container');
@@ -24,7 +25,7 @@ form.appendChild(submitInput);
 search.appendChild(form);
 
 
-
+// GALLERY CONTAINER
 //Create Card Div and Add Elements
 let gallery = document.getElementById('gallery');
 let cardContainer = document.createElement('div');
@@ -73,3 +74,41 @@ cardInfoContainer.appendChild(email);
 //Add location to Card Info Container
 cardInfoContainer.appendChild(locationPara);
 
+
+// MODAL CONTAINER
+//Create Elements For Modal Container
+let modalContainer = document.createElement('div');
+let modal = document.createElement('div');
+let modalInfo = document.createElement('div');
+let modalImage = document.createElement('img');
+let modalName = document.createElement('h3');
+let modalEmail = document.createElement('p');
+let modalCity = document.createElement('p');
+let modalPhoneNumber = document.createElement('p');
+let modalAddress = document.createElement('p');
+let modalBirthday = document.createElement('p');
+let modalButton = document.createElement('button');
+let strongText = document.createElement('STRONG');
+
+//Add Class Attributes To Elements
+strongText.textContent = 'X';
+modalContainer.classList.add('modal-container');
+modal.classList.add('modal');
+modalButton.type = 'button';
+modalButton.setAttribute('id', 'modal-close-btn');
+modalButton.classList.add('modal-close-btn');
+modalInfo.classList.add('modal-info-container');
+modalImage.classList.add('modal-img');
+modalImage.src = 'https://placehold.it/125x125';
+modalImage.alt = 'profile picture';
+modalName.setAttribute('id', 'name');
+modalName.classList.add('modal-name');
+modalName.classList.add('cap');
+modalEmail.classList.add('modal-text');
+modalCity.classList.add('modal-text');
+modalCity.classList.add('cap');
+modalPhoneNumber.classList.add('modal-text');
+modalAddress.classList.add('modal-text');
+modalBirthday.classList.add('modal-text');
+
+//Append Elements To Respective Parent Elements
