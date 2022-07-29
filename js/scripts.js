@@ -74,6 +74,21 @@ cardInfoContainer.appendChild(email);
 //Add location to Card Info Container
 cardInfoContainer.appendChild(locationPara);
 
+//Fetch Data From API
+fetch('https://randomuser.me/api/?results=12')
+    .then((response) => response.json())
+    .then((data) => {
+        const user = data.results
+        console.log(user);
+        user.map((person, index) => {
+            console.log(person.picture.thumbnail);
+            nameHeader.innerHTML = `${person.name.first} ${person.name.last}`
+            cardImage.src = person.picture.thumbnail;
+            email.innerHTML = `${person.email}`
+            locationPara.innerHTML = `${person.location.city} ${person.location.state}`
+        })
+    })
+    
 
 // MODAL CONTAINER
 //Create Elements For Modal Container
@@ -125,3 +140,5 @@ modalInfo.appendChild(divider);
 modalInfo.appendChild(modalPhoneNumber);
 modalInfo.appendChild(modalAddress);
 modalInfo.appendChild(modalBirthday);
+
+
