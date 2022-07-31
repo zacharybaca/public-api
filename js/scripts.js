@@ -28,11 +28,7 @@ search.appendChild(form);
 // GALLERY CONTAINER
 let gallery = document.getElementById('gallery');
 
-
-
-
-
-function assignAttributes(cardProfilePic, cardAlt, cardName, cardEmail,cardLocation) {
+function assignAttributes(cardProfilePic, cardAlt, cardName, cardEmail,cardLocation, address, phoneNumber, birthday) {
     //Assign Class Attributes To Elements
     let cardContainer = document.createElement('div');
     let cardImageContainer = document.createElement('div');
@@ -41,6 +37,21 @@ function assignAttributes(cardProfilePic, cardAlt, cardName, cardEmail,cardLocat
     let nameHeader = document.createElement('h3');
     let email = document.createElement('p');
     let locationPara = document.createElement('p');
+    // MODAL CONTAINER
+    //Create Elements For Modal Container
+    let modalContainer = document.createElement('div');
+    let modal = document.createElement('div');
+    let modalInfo = document.createElement('div');
+    let modalImage = document.createElement('img');
+    let modalName = document.createElement('h3');
+    let modalEmail = document.createElement('p');
+    let modalCity = document.createElement('p');
+    let modalPhoneNumber = document.createElement('p');
+    let modalAddress = document.createElement('p');
+    let modalBirthday = document.createElement('p');
+    let modalButton = document.createElement('button');
+    let strongText = document.createElement('STRONG');
+    let divider = document.createElement('hr');
     cardContainer.classList.add('card');
     cardImageContainer.classList.add('card-img-container');
     cardImage.classList.add('card-img');
@@ -56,6 +67,47 @@ function assignAttributes(cardProfilePic, cardAlt, cardName, cardEmail,cardLocat
     nameHeader.innerHTML = cardName;
     email.innerHTML = cardEmail;
     locationPara.innerHTML = cardLocation;
+
+    //Add Class Attributes To Elements
+    strongText.textContent = 'X';
+    modalContainer.classList.add('modal-container');
+    modal.classList.add('modal');
+    modalButton.type = 'button';
+    modalButton.setAttribute('id', 'modal-close-btn');
+    modalButton.classList.add('modal-close-btn');
+    modalInfo.classList.add('modal-info-container');
+    modalImage.classList.add('modal-img');
+    modalImage.src = cardProfilePic;
+    modalName.setAttribute('id', 'name');
+    modalName.classList.add('modal-name');
+    modalName.classList.add('cap');
+    modalName.innerHTML = name;
+    modalEmail.classList.add('modal-text');
+    modalEmail.innerHTML = email;
+    modalCity.classList.add('modal-text');
+    modalCity.classList.add('cap');
+    modalCity.innerHTML = locationPara;
+    modalPhoneNumber.classList.add('modal-text');
+    modalPhoneNumber.innerHTML = phoneNumber;
+    modalAddress.classList.add('modal-text');
+    modalAddress.innerHTML = location;
+    modalBirthday.classList.add('modal-text');
+    modalBirthday.innerHTML = birthday;
+
+     //Append Elements To Respective Parent Elements
+     modalContainer.appendChild(modal);
+     modalButton.appendChild(strongText);
+     modal.appendChild(modalButton);
+     modal.appendChild(modalInfo);
+     modalInfo.appendChild(modalImage);
+     modalInfo.appendChild(modalName);
+     modalInfo.appendChild(modalEmail);
+     modalInfo.appendChild(modalCity);
+     modalInfo.appendChild(divider);
+     modalInfo.appendChild(modalPhoneNumber);
+     modalInfo.appendChild(modalAddress);
+     modalInfo.appendChild(modalBirthday);
+
      //Add Card Container To Gallery Container
      gallery.appendChild(cardContainer);
 
@@ -77,18 +129,18 @@ function assignAttributes(cardProfilePic, cardAlt, cardName, cardEmail,cardLocat
      //Add location to Card Info Container
      cardInfoContainer.appendChild(locationPara);
 
-     //Event Listener To Listen For On Click For Each Card
+    //Event Listener To Listen For On Click For Each Card
      
-     cardContainer.addEventListener('click', (e) => {
+    cardContainer.addEventListener('click', (e) => {
         gallery.appendChild(modalContainer);
         console.log(e.target);
-        closeModal();
+        closeModal(modalContainer);
     })
    
     
 }
 
-function closeModal() {
+function closeModal(modalContainer) {
     const closeBtn = document.getElementById('modal-close-btn');
     closeBtn.addEventListener('click', () => {
         modalContainer.remove();
@@ -109,62 +161,15 @@ fetch('https://randomuser.me/api/?results=12')
             let cardEmail = person.email;
             let cardAlt = cardImage.alt;
             let locationPara = person.location.city.concat(" ", person.location.state);
-            assignAttributes(cardImage, cardAlt, nameHeader, cardEmail, locationPara);
+            let address = person.location.street.number;
+            let phoneNumber = person.cell;
+            let birthday = person.dob.date;
+            assignAttributes(cardImage, cardAlt, nameHeader, cardEmail, locationPara, address, phoneNumber, birthday);
         })
     });
     
     
 
-// MODAL CONTAINER
-//Create Elements For Modal Container
-let modalContainer = document.createElement('div');
-let modal = document.createElement('div');
-let modalInfo = document.createElement('div');
-let modalImage = document.createElement('img');
-let modalName = document.createElement('h3');
-let modalEmail = document.createElement('p');
-let modalCity = document.createElement('p');
-let modalPhoneNumber = document.createElement('p');
-let modalAddress = document.createElement('p');
-let modalBirthday = document.createElement('p');
-let modalButton = document.createElement('button');
-let strongText = document.createElement('STRONG');
-let divider = document.createElement('hr');
-
-//Add Class Attributes To Elements
-strongText.textContent = 'X';
-modalContainer.classList.add('modal-container');
-modal.classList.add('modal');
-modalButton.type = 'button';
-modalButton.setAttribute('id', 'modal-close-btn');
-modalButton.classList.add('modal-close-btn');
-modalInfo.classList.add('modal-info-container');
-modalImage.classList.add('modal-img');
-modalImage.src = 'https://placehold.it/125x125';
-modalImage.alt = 'profile picture';
-modalName.setAttribute('id', 'name');
-modalName.classList.add('modal-name');
-modalName.classList.add('cap');
-modalEmail.classList.add('modal-text');
-modalCity.classList.add('modal-text');
-modalCity.classList.add('cap');
-modalPhoneNumber.classList.add('modal-text');
-modalAddress.classList.add('modal-text');
-modalBirthday.classList.add('modal-text');
-
-//Append Elements To Respective Parent Elements
-modalContainer.appendChild(modal);
-modalButton.appendChild(strongText);
-modal.appendChild(modalButton);
-modal.appendChild(modalInfo);
-modalInfo.appendChild(modalImage);
-modalInfo.appendChild(modalName);
-modalInfo.appendChild(modalEmail);
-modalInfo.appendChild(modalCity);
-modalInfo.appendChild(divider);
-modalInfo.appendChild(modalPhoneNumber);
-modalInfo.appendChild(modalAddress);
-modalInfo.appendChild(modalBirthday);
 
 
 
