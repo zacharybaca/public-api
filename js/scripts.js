@@ -161,12 +161,12 @@ fetch('https://randomuser.me/api/?results=12')
             let cardEmail = person.email;
             let cardAlt = cardImage.alt;
             let locationPara = person.location.city.concat(" ", person.location.state);
-            let address = person.location.street.number + " " + person.location.street.name + " " + person.location.city + " " + person.location.state + " " + person.location.postcode + " " + person.location.country;
+            let address = person.location.street.number + " " + person.location.street.name + ", " + person.location.city + ", " + person.location.state + ", " + person.location.postcode + " " + person.location.country;
             let phoneNumber = person.cell;
             phoneNumber = phoneNumber.replace(/\D+/g, '')
                     .replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3');
             let birthday = new Date(person.dob.date);
-            birthday = `${birthday.getMonth()}/${birthday.getDay()}/${birthday.getFullYear()}`
+            birthday = `Birthday: ${birthday.getMonth()}/${birthday.getDay()}/${birthday.getFullYear()}`
             assignAttributes(cardImage, cardAlt, nameHeader, cardEmail, locationPara, address, phoneNumber, birthday);
         })
     });
