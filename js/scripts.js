@@ -81,16 +81,16 @@ function assignAttributes(cardProfilePic, cardAlt, cardName, cardEmail,cardLocat
     modalName.setAttribute('id', 'name');
     modalName.classList.add('modal-name');
     modalName.classList.add('cap');
-    modalName.innerHTML = name;
+    modalName.innerHTML = cardName;
     modalEmail.classList.add('modal-text');
-    modalEmail.innerHTML = email;
+    modalEmail.innerHTML = cardEmail;
     modalCity.classList.add('modal-text');
     modalCity.classList.add('cap');
-    modalCity.innerHTML = locationPara;
+    modalCity.innerHTML = cardLocation;
     modalPhoneNumber.classList.add('modal-text');
     modalPhoneNumber.innerHTML = phoneNumber;
     modalAddress.classList.add('modal-text');
-    modalAddress.innerHTML = location;
+    modalAddress.innerHTML = address;
     modalBirthday.classList.add('modal-text');
     modalBirthday.innerHTML = birthday;
 
@@ -161,7 +161,7 @@ fetch('https://randomuser.me/api/?results=12')
             let cardEmail = person.email;
             let cardAlt = cardImage.alt;
             let locationPara = person.location.city.concat(" ", person.location.state);
-            let address = person.location.street.number;
+            let address = person.location.street.number + " " + person.location.street.name + " " + person.location.city + " " + person.location.state + " " + person.location.postcode + " " + person.location.country;
             let phoneNumber = person.cell;
             let birthday = person.dob.date;
             assignAttributes(cardImage, cardAlt, nameHeader, cardEmail, locationPara, address, phoneNumber, birthday);
