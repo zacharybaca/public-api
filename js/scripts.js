@@ -165,7 +165,8 @@ fetch('https://randomuser.me/api/?results=12')
             let phoneNumber = person.cell;
             phoneNumber = phoneNumber.replace(/\D+/g, '')
                     .replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3');
-            let birthday = person.dob.date;
+            let birthday = new Date(person.dob.date);
+            birthday = `${birthday.getMonth()}/${birthday.getDay()}/${birthday.getFullYear()}`
             assignAttributes(cardImage, cardAlt, nameHeader, cardEmail, locationPara, address, phoneNumber, birthday);
         })
     });
