@@ -163,6 +163,8 @@ fetch('https://randomuser.me/api/?results=12')
             let locationPara = person.location.city.concat(" ", person.location.state);
             let address = person.location.street.number + " " + person.location.street.name + " " + person.location.city + " " + person.location.state + " " + person.location.postcode + " " + person.location.country;
             let phoneNumber = person.cell;
+            phoneNumber = phoneNumber.replace(/\D+/g, '')
+                    .replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3');
             let birthday = person.dob.date;
             assignAttributes(cardImage, cardAlt, nameHeader, cardEmail, locationPara, address, phoneNumber, birthday);
         })
