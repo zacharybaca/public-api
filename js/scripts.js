@@ -133,7 +133,6 @@ function assignAttributes(cardProfilePic, cardAlt, cardName, cardEmail,cardLocat
      
     cardContainer.addEventListener('click', (e) => {
         gallery.appendChild(modalContainer);
-        console.log(e.target);
         closeModal(modalContainer);
     })
    
